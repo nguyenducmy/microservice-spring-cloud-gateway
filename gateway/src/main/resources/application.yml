@@ -1,0 +1,36 @@
+server:
+  port:8080
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: PRODUCT-SERVICE
+          uri: lb://PRODUCT-SERVICE
+          predicates:
+            - Path=/api/v1/product/**
+          filters:
+            - AuthenticationFilter
+        - id: STORE-SERVICE
+          uri: lb://STORE-SERVICE
+          predicates:
+            - Path=/api/v1/store/**
+          filters:
+            - AuthenticationFilter
+        - id: AUTHEN-SERVICE
+          uri: lb://AUTHEN-SERVICE
+          predicates:
+            - Path=/api/v1/authen/**
+          filters:
+            - AuthenticationFilter
+  application:
+    name:API-GATEWAY
+
+
+eureka:
+  instance:
+    client:
+      serviceUrl:
+        defaultZone: http://root:admin@localhost:8761/eureka
+
+
+
