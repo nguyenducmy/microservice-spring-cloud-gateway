@@ -23,7 +23,7 @@ spring:
           filters:
             - AuthenticationFilter
   application:
-    name:API-GATEWAY
+    name: API-GATEWAY
 
 
 eureka:
